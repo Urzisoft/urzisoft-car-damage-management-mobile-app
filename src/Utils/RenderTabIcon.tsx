@@ -1,5 +1,6 @@
 import React from "react";
 import { ColorValue } from "react-native";
+
 const RenderTabIcon = (
   width: number,
   height: number,

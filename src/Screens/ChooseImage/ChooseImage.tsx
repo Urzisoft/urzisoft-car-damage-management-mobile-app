@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { View, Button, Image } from "react-native";
+import { View, Image } from "react-native";
 import styles from "./ChooseImage.style";
 import ImagePicker, {
   Image as ImageType,
 } from "react-native-image-crop-picker";
+import ChooseImageButton from "../../Components/ChooseImageButton/ChooseImageButton";
 
 const ChooseImage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | undefined>();
@@ -23,6 +24,7 @@ const ChooseImage: React.FC = () => {
     ImagePicker.openCamera({})
       .then((image: ImageType) => {
         setSelectedImage(image.path);
+        console.log(image);
       })
       .catch((error) => {
         console.log(error);
@@ -38,15 +40,12 @@ const ChooseImage: React.FC = () => {
       {selectedImage && (
         <Image source={{ uri: selectedImage }} style={styles.selectedImage} />
       )}
-      <View style={styles.chooseFromGalleryButtonContainer}>
-        <Button title="Choose from Gallery" onPress={handleImagePicker} />
-      </View>
-      <View style={styles.takePhotoButtonContainer}>
-        <Button title="Take a Photo" onPress={handleCameraPicker} />
-      </View>
-      <View style={styles.uploadPhotoButtonContainer}>
-        <Button title="Upload Photo" onPress={handleUpload} />
-      </View>
+      <ChooseImageButton
+        title="Pick from Gallery"
+        onPress={handleImagePicker}
+      />
+      <ChooseImageButton title={"Take a Photo"} onPress={handleCameraPicker} />
+      <ChooseImageButton title={"Upload Photo"} onPress={handleUpload} />
     </View>
   );
 };

@@ -22,8 +22,8 @@ const tabBarOptions = {
 const tabBarStyle = {
   height: 90,
   paddingTop: 20,
-  backgroundColor: "black",
-  borderTopColor: "black",
+  backgroundColor: Colors.BLACK,
+  borderTopColor: Colors.BLACK,
 };
 
 const CameraIconTab = {
