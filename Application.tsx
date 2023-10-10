@@ -1,6 +1,11 @@
-import Home from "./src/Screens/Home";
+import BottomTabNavigator from "./src/Routes/BottomTabNavigator";
+import { NavigationContainer } from "@react-navigation/native";
 
 const Application = () => {
-  return <Home />;
+  return (
+    <NavigationContainer>
+      <BottomTabNavigator />
+    </NavigationContainer>
+  );
 };
 export default Application;
