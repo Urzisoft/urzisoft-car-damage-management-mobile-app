@@ -1,27 +1,45 @@
-import { Image, Text, View } from "react-native";
 import React from "react";
+import { Image, Text, View } from "react-native";
 import styles from "./HomeCard.style";
 
-const HomeCard = () => {
+export interface HomeCardProps {
+  licensePlate: string;
+  imageUri: string;
+  damageSeverity: string;
+  carEntryDate: string;
+  carLeaveDate: string | null;
+  isDone: boolean;
+}
+
+const HomeCard: React.FC<HomeCardProps> = ({
+  licensePlate,
+  imageUri,
+  damageSeverity,
+  carEntryDate,
+  carLeaveDate,
+  isDone,
+}) => {
   return (
     <View style={styles.rootContainer}>
       <View style={[styles.card, styles.cardElevated]}>
         <Image
           source={{
-            uri: "https://pps.whatsapp.net/v/t61.24694-24/322276126_265056459844057_4804512518629504874_n.jpg?ccb=11-4&oh=01_AdQlPS1qrf_46kTb1fxaHUdKyLXcOlaz3kaZcMqA_91ITw&oe=6532EE60&_nc_sid=000000&_nc_cat=100",
+            uri: imageUri,
           }}
           style={styles.cardImage}
         />
         <View style={styles.cardBody}>
-          <Text style={styles.cardTitle}>Card Template</Text>
-          <Text style={styles.cardLabel}>Subtitle Template</Text>
-          <Text style={styles.cardDescription}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi,
-            debitis dolor dolorem ex fugiat in iusto nesciunt quaerat sapiente
-            similique soluta vero. Dolore eos error excepturi nisi quae, saepe
-            soluta.
+          <Text style={styles.cardTitle}>License Plate: {licensePlate}</Text>
+          <Text style={styles.cardLabel}>
+            Damage Severity: {damageSeverity}
           </Text>
-          <Text style={styles.cardFooter}>footer if needed</Text>
+          <Text style={styles.cardLabel}>Car Entry Date: {carEntryDate}</Text>
+          {carLeaveDate && (
+            <Text style={styles.cardLabel}>Car Leave Date: {carLeaveDate}</Text>
+          )}
+          <Text style={styles.cardFooter}>
+            Status: {isDone ? "Done" : "Not Done"}
+          </Text>
         </View>
       </View>
     </View>

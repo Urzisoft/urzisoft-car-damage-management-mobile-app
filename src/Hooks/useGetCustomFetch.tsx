@@ -11,11 +11,13 @@ const useGetCustomFetch = <Data, Param>(
   const fetcher = async (token?: Param) => {
     setIsLoading(true);
     try {
+      console.log("+++", token);
+
       const request = await fetch(url, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          ...(token && { Authorization: `Bearer ${token}` }),
+          ...(token && { Authorization: `Token ${token}` }),
         },
       });
       const response = await request.json();

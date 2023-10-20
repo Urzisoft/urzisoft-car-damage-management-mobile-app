@@ -17,7 +17,7 @@ const usePostCustomFetch = <Data extends any, Param extends any>(
         headers: {
           Accept: "application/json",
           ...(!isForm && { "Content-Type": "application/json" }),
-          ...(token && { Authorization: `Bearer ${token}` }),
+          ...(token && { Authorization: `Token ${token}` }),
         },
         ...(param && {
           body: isForm ? (param as any) : JSON.stringify(param),
