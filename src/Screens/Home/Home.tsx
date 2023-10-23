@@ -14,15 +14,18 @@ const Home: React.FC = () => {
   const { token } = useValidateUser();
 
   useEffect(() => {
-    // console.log("token is ", token);
+    console.log("token is ", token);
     if (token !== null) {
       carFetch(token);
     }
   }, [token]);
 
   useEffect(() => {
-    // console.log("Response is ", response);
+    if(response){
+      setCarList(response);
+    }
   }, [response]);
+
 
   return (
     <SafeAreaView style={styles.rootContainer}>

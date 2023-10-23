@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Text, View } from "react-native";
 import styles from "./HomeCard.style";
+import useGetCustomFetch from "../../Hooks/useGetCustomFetch";
 
 export interface HomeCardProps {
   licensePlate: string;
@@ -19,12 +20,15 @@ const HomeCard: React.FC<HomeCardProps> = ({
   carLeaveDate,
   isDone,
 }) => {
+
+
+
   return (
     <View style={styles.rootContainer}>
       <View style={[styles.card, styles.cardElevated]}>
         <Image
           source={{
-            uri: imageUri,
+            uri: "http://localhost:8000" +imageUri,
           }}
           style={styles.cardImage}
         />

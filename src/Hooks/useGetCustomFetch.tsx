@@ -11,8 +11,6 @@ const useGetCustomFetch = <Data, Param>(
   const fetcher = async (token?: Param) => {
     setIsLoading(true);
     try {
-      console.log("+++", token);
-
       const request = await fetch(url, {
         method: "GET",
         headers: {
@@ -21,7 +19,7 @@ const useGetCustomFetch = <Data, Param>(
         },
       });
       const response = await request.json();
-
+      console.log(response);
       if (response.errors) {
         setServerError(response);
       } else {

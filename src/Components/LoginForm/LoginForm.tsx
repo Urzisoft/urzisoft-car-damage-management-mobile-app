@@ -1,5 +1,4 @@
 import { Text, TextInput, View } from "react-native";
-
 import styles from "./LoginForm.style";
 import Colors from "../../Utils/Colors";
 
@@ -38,6 +37,7 @@ const LoginForm = ({
           placeholderTextColor={Colors.GREY}
           value={password}
           onChangeText={handlePasswordChange}
+          secureTextEntry={false} //replace to true when done
         />
       </View>
     </View>

@@ -35,6 +35,19 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+             <key>188.24.31.102</key>
+            <dict>
+                 <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                 <true/>
+          <key>NSIncludesSubdomains</key>
+          <true/>
+        </dict>
+      </dict>
+    </dict>
 	<key>NSCameraUsageDescription</key>
     	<string>$(PRODUCT_NAME) needs access to your Camera.</string>
         <key>NSPhotoLibraryUsageDescription</key>

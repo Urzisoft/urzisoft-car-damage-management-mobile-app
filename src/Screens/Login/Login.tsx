@@ -1,10 +1,9 @@
-import { Button, SafeAreaView, Text, View } from "react-native";
+import { Button, SafeAreaView, View } from "react-native";
 import React, { useCallback, useState } from "react";
 import LoginForm from "../../Components/LoginForm/LoginForm";
 import styles from "./Login.style";
 import { useAuth } from "../../Hooks/useAuth";
-import useValidateUser from "../../Hooks/useValidateUser";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import Logo from "../../Assets/Logo.svg";
 
 const Login = () => {
   const { logUserIn } = useAuth();
@@ -29,7 +28,9 @@ const Login = () => {
 
   return (
     <SafeAreaView style={styles.mainContainer}>
+
       <View style={styles.container}>
+        <Logo height={200}/>
         <LoginForm
           username={username}
           password={password}

@@ -5,15 +5,13 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: Colors.GREY,
+    justifyContent: "flex-start",
+
   },
   container: {
-    flex: 1,
+    paddingTop:100,
     justifyContent: "center",
     alignItems: "center",
-  },
-  errorText: {
-    color: Colors.RED,
-    marginBottom: 10,
   },
 });
 

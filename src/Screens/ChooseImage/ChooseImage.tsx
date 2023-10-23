@@ -5,8 +5,13 @@ import ImagePicker, {
   Image as ImageType,
 } from "react-native-image-crop-picker";
 import ChooseImageButton from "../../Components/ChooseImageButton/ChooseImageButton";
+import usePostCustomFetch from "../../Hooks/usePostCustomFetch";
+import useValidateUser from "../../Hooks/useValidateUser";
+import requestUrls from "../../Backend/requestUrls";
 
 const ChooseImage: React.FC = () => {
+    const { token } = useValidateUser();
+    const { response,fetcher: sendImagePayload} = usePostCustomFetch(requestUrls.sendCars);
   const [selectedImage, setSelectedImage] = useState<string | undefined>();
 
   const handleImagePicker = () => {
@@ -32,7 +37,16 @@ const ChooseImage: React.FC = () => {
   };
 
   const handleUpload = () => {
-    //send image object to backend
+      const formData = new FormData();
+      formData.append('image_url', {
+          uri: selectedImage,
+          name: 'image.jpg',
+          type: 'image/jpeg',
+      });
+      formData.append('license_plate', "MS10DRB");
+      console.log(formData)
+    sendImagePayload(formData,token,true);
+      console.log(response);
   };
 
   return (

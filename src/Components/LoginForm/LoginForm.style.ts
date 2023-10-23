@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   inputContainer: {
-    backgroundColor: Colors.RED,
+    backgroundColor: Colors.LIGHT_GRAY,
     width: "85%",
     borderRadius: 8,
     flexDirection: "row",
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     padding: 14,
     fontSize: 18,
     width: "90%",
-    color: Colors.GREEN,
+    color: Colors.BLACK,
   },
 });
 
