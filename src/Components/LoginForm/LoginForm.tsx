@@ -37,7 +37,7 @@ const LoginForm = ({
           placeholderTextColor={Colors.GREY}
           value={password}
           onChangeText={handlePasswordChange}
-          secureTextEntry={false} //replace to true when done
+          secureTextEntry={true}
         />
       </View>
     </View>

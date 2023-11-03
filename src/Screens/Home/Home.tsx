@@ -22,17 +22,17 @@ const Home: React.FC = () => {
   }, [token]);
 
   useEffect(() => {
-    if(updated) {
+    if (updated) {
       carFetch(token);
       setUpdated(false);
     }
   }, [updated]);
 
   useEffect(() => {
-    if(response){
+    if (response) {
       setCarList(response);
     }
-  }, [response]);
+  }, [response, updated]);
 
   return (
     <SafeAreaView style={styles.rootContainer}>

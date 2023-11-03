@@ -13,6 +13,21 @@ const styles = StyleSheet.create({
     height: 300,
     marginVertical: 20,
   },
+  inputContainer: {
+    backgroundColor: Colors.LIGHT_GRAY,
+    width: "76%",
+    borderRadius: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+    paddingRight: 10,
+  },
+  inputField: {
+    padding: 14,
+    fontSize: 18,
+    width: "90%",
+    color: Colors.BLACK,
+  },
 });
 
 export default styles;

@@ -2,6 +2,7 @@ import { RouterKey } from "./Routes";
 import Home from "../Screens/Home/Home";
 import ChooseImage from "../Screens/ChooseImage/ChooseImage";
 import Login from "../Screens/Login/Login";
+import Settings from "../Screens/Settings/Settings";
 import { createStackNavigator } from "@react-navigation/stack";
 import BottomTabNavigator from "./BottomTabNavigator";
 
@@ -10,6 +11,7 @@ const screenRoutes = [
   { name: RouterKey.CHOOSE_IMAGE_SCREEN, component: ChooseImage },
   { name: RouterKey.LOGIN_SCREEN, component: Login },
   { name: RouterKey.BOTTOM_TAB_NAVIGATOR, component: BottomTabNavigator },
+  { name: RouterKey.SETTINGS_SCREEN, component: Settings },
 ];
 
 const tabBarOptions = {

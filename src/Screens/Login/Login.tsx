@@ -1,14 +1,16 @@
-import { Button, SafeAreaView, View } from "react-native";
-import React, { useCallback, useState } from "react";
+import { SafeAreaView, Text, View } from "react-native";
+import React, { useCallback, useEffect, useState } from "react";
 import LoginForm from "../../Components/LoginForm/LoginForm";
 import styles from "./Login.style";
 import { useAuth } from "../../Hooks/useAuth";
 import Logo from "../../Assets/Logo.svg";
+import ChooseImageButton from "../../Components/ChooseImageButton/ChooseImageButton";
 
 const Login = () => {
-  const { logUserIn, logUserOut } = useAuth();
+  const { logUserIn, loginResponse } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
 
   const handleUsernameChange = useCallback((text: string) => {
     setUsername(text);
@@ -26,11 +28,16 @@ const Login = () => {
     logUserIn(username, password);
   };
 
+  useEffect(() => {
+    if (loginResponse?.non_field_errors) {
+      setLoginError("Invalid Credentials");
+    }
+  }, [loginResponse]);
+
   return (
     <SafeAreaView style={styles.mainContainer}>
-
       <View style={styles.container}>
-        <Logo height={200}/>
+        <Logo height={200} />
         <LoginForm
           username={username}
           password={password}
@@ -38,7 +45,8 @@ const Login = () => {
           handlePasswordChange={handlePasswordChange}
           handleDeleteUsername={handleDeleteUsername}
         />
-        <Button title={"Login"} onPress={handleLogin} />
+        <Text style={styles.loginError}>{loginError}</Text>
+        <ChooseImageButton title="Login" onPress={handleLogin} />
       </View>
     </SafeAreaView>
   );

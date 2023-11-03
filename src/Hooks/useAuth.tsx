@@ -1,8 +1,8 @@
 import { createContext, FC, useContext, useEffect } from "react";
 import usePostCustomFetch from "./usePostCustomFetch";
-import usePersistentState,{removeStorage} from "./usePersistentState";
+import usePersistentState, { removeStorage } from "./usePersistentState";
 import requestUrls from "../Backend/requestUrls";
-import {StackActions, useNavigation} from "@react-navigation/native";
+import { StackActions, useNavigation } from "@react-navigation/native";
 import { RouterKey } from "../Routes/Routes";
 
 const useAuthService = () => {
@@ -24,19 +24,24 @@ const useAuthService = () => {
   };
 
   const logUserOut = async () => {
-    await removeStorage("token")
-    navigation.dispatch(StackActions.replace(RouterKey.LOGIN_SCREEN))
-  }
+    await removeStorage("token");
+    navigation.dispatch(StackActions.replace(RouterKey.LOGIN_SCREEN));
+    setAuthFields("");
+    setToken("");
+  };
   const setAuthFields = (props?: any) => {
     setToken(props ? props.token : "");
   };
 
   useEffect(() => {
     if (loginResponse) {
-      console.log(loginResponse.token);
+      console.log(loginResponse);
       if (loginResponse.token) {
         setAuthFields(loginResponse?.status ? undefined : loginResponse);
-        navigation.dispatch(StackActions.replace(RouterKey.BOTTOM_TAB_NAVIGATOR))
+        navigation.dispatch(
+          StackActions.replace(RouterKey.BOTTOM_TAB_NAVIGATOR)
+        );
+        loginResponse.token = null;
       }
     }
     // eslint-disable-next-line
@@ -45,12 +50,14 @@ const useAuthService = () => {
   return {
     logUserIn,
     logUserOut,
+    loginResponse,
   };
 };
 
 const initialState = {
   logUserIn: (user: string, pass: string) => undefined,
   logUserOut: () => undefined,
+  loginResponse: "",
 };
 
 export const AuthContext = createContext<
