@@ -15,11 +15,10 @@ const useGetCustomFetch = <Data, Param>(
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          ...(token && { Authorization: `Bearer ${token}` }),
+          ...(token && { Authorization: `Token ${token}` }),
         },
       });
       const response = await request.json();
-
       if (response.errors) {
         setServerError(response);
       } else {
