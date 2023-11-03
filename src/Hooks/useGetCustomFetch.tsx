@@ -19,7 +19,6 @@ const useGetCustomFetch = <Data, Param>(
         },
       });
       const response = await request.json();
-      console.log(response);
       if (response.errors) {
         setServerError(response);
       } else {

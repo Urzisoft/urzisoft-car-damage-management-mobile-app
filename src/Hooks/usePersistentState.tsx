@@ -22,7 +22,7 @@ const setStorage = async (key: string, value: any) => {
     }
 };
 
-const removeStorage = async (key: string) => {
+export const removeStorage = async (key: string) => {
     try {
         await AsyncStorage.removeItem(key);
     } catch (error) {
@@ -44,15 +44,12 @@ const usePersistentState = (key: keyof localStorageKeys) => {
         setStore(value);
     };
 
-    const remove = () => {
-        removeStorage(key);
-        setStore(null);
-    };
+
 
     return {
         store,
         set,
-        remove
+        removeStorage
     };
 };
 

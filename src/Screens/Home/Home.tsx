@@ -5,8 +5,10 @@ import HomeCard from "../../Components/HomeCard/HomeCard";
 import useGetCustomFetch from "../../Hooks/useGetCustomFetch";
 import requestUrls from "../../Backend/requestUrls";
 import useValidateUser from "../../Hooks/useValidateUser";
+import { useUpdated } from "../../Context/UpdatedContext";
 
 const Home: React.FC = () => {
+  const { updated, setUpdated } = useUpdated();
   const [carList, setCarList] = useState<any[]>([]);
   const { response, fetcher: carFetch } = useGetCustomFetch<any, any>(
     requestUrls.requestCars
@@ -14,18 +16,23 @@ const Home: React.FC = () => {
   const { token } = useValidateUser();
 
   useEffect(() => {
-    console.log("token is ", token);
     if (token !== null) {
       carFetch(token);
     }
   }, [token]);
 
   useEffect(() => {
+    if(updated) {
+      carFetch(token);
+      setUpdated(false);
+    }
+  }, [updated]);
+
+  useEffect(() => {
     if(response){
       setCarList(response);
     }
   }, [response]);
-
 
   return (
     <SafeAreaView style={styles.rootContainer}>

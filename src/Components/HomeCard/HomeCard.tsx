@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, Text, View } from "react-native";
 import styles from "./HomeCard.style";
-import useGetCustomFetch from "../../Hooks/useGetCustomFetch";
+import {backendEnvironment} from "../../Backend/requestUrls";
 
 export interface HomeCardProps {
   licensePlate: string;
@@ -21,14 +21,12 @@ const HomeCard: React.FC<HomeCardProps> = ({
   isDone,
 }) => {
 
-
-
   return (
     <View style={styles.rootContainer}>
       <View style={[styles.card, styles.cardElevated]}>
         <Image
           source={{
-            uri: "http://localhost:8000" +imageUri,
+            uri: backendEnvironment +imageUri,
           }}
           style={styles.cardImage}
         />

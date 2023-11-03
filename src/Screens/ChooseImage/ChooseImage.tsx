@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Image } from "react-native";
+import {View, Image, Button} from "react-native";
 import styles from "./ChooseImage.style";
 import ImagePicker, {
   Image as ImageType,
@@ -8,17 +8,24 @@ import ChooseImageButton from "../../Components/ChooseImageButton/ChooseImageBut
 import usePostCustomFetch from "../../Hooks/usePostCustomFetch";
 import useValidateUser from "../../Hooks/useValidateUser";
 import requestUrls from "../../Backend/requestUrls";
+import {useAuth} from "../../Hooks/useAuth";
+import { useNavigation } from "@react-navigation/native";
+import { RouterKey } from "../../Routes/Routes";
+import { useUpdated } from "../../Context/UpdatedContext";
 
 const ChooseImage: React.FC = () => {
+    const { setUpdated } = useUpdated();
+    const navigation = useNavigation();
     const { token } = useValidateUser();
     const { response,fetcher: sendImagePayload} = usePostCustomFetch(requestUrls.sendCars);
   const [selectedImage, setSelectedImage] = useState<string | undefined>();
+  const { logUserOut} = useAuth();
 
   const handleImagePicker = () => {
     ImagePicker.openPicker({})
       .then((image: ImageType) => {
         setSelectedImage(image.path);
-        console.log(image);
+
       })
       .catch((error) => {
         console.log(error);
@@ -29,7 +36,6 @@ const ChooseImage: React.FC = () => {
     ImagePicker.openCamera({})
       .then((image: ImageType) => {
         setSelectedImage(image.path);
-        console.log(image);
       })
       .catch((error) => {
         console.log(error);
@@ -43,11 +49,18 @@ const ChooseImage: React.FC = () => {
           name: 'image.jpg',
           type: 'image/jpeg',
       });
-      formData.append('license_plate', "MS10DRB");
-      console.log(formData)
+      formData.append('license_plate', "MM170SSB");
+
     sendImagePayload(formData,token,true);
-      console.log(response);
+    if(response == null) {
+        navigation.navigate(RouterKey.HOME_SCREEN as never);
+        setUpdated(true);
+    }
   };
+
+  const handleLogout = () => {
+      logUserOut()
+  }
 
   return (
     <View style={styles.rootContainer}>
@@ -60,8 +73,13 @@ const ChooseImage: React.FC = () => {
       />
       <ChooseImageButton title={"Take a Photo"} onPress={handleCameraPicker} />
       <ChooseImageButton title={"Upload Photo"} onPress={handleUpload} />
+        <Button title={"Logout"} onPress={handleLogout} />
     </View>
   );
 };
 
 export default ChooseImage;
+function useNavigate() {
+    throw new Error("Function not implemented.");
+}
+

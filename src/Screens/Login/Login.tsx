@@ -6,7 +6,7 @@ import { useAuth } from "../../Hooks/useAuth";
 import Logo from "../../Assets/Logo.svg";
 
 const Login = () => {
-  const { logUserIn } = useAuth();
+  const { logUserIn, logUserOut } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 

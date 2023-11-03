@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     backgroundColor: Colors.LIGHT_GRAY,
-    width: "85%",
+    width: "90%",
     borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",
@@ -22,12 +22,6 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   inputField: {
-    padding: 14,
-    fontSize: 18,
-    width: "90%",
-    color: Colors.BLACK,
-  },
-  inputPasswordField: {
     padding: 14,
     fontSize: 18,
     width: "90%",

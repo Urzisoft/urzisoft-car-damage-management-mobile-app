@@ -32,7 +32,7 @@ const LoginForm = ({
       <Text style={styles.text}>Password</Text>
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.inputPasswordField}
+          style={styles.inputField}
           placeholder={"Password"}
           placeholderTextColor={Colors.GREY}
           value={password}
